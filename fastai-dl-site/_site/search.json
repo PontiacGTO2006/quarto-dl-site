@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "projects/painting-classifier.html",
+    "href": "projects/painting-classifier.html",
+    "title": "Ashryver Painting Classifier",
+    "section": "",
+    "text": "Try the current revision of the Ashryver Painting Classifier (V1) below. This deep learning model is trained to recognize paintings by 20 different Impressionistic, Surrealist, Cubist, and Pop Art artists, and was trained using fast.ai and PyTorch. Work on an improved V2 is currently underway."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my primary AI/ML live portfolio, Deep Learning Exploration! This is a website showcasing my interactive AI projects, along with Jupyter Notebooks and blog entries so you can get an idea for the process/code behind the projects. This site is actively in development, and I’m working on new models and projects - most of which will be embedded here from HuggingFace or a similar area.\nOn the menu bar above, you’ll find links to a few of my completed projects. This includes the Painting Classifier and future neural-net models I’m working on with fast.ai and PyTorch.\nFor a more high-level overview of my AI/ML projects, go to discordantharmony.com."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Deep Learning Exploration",
+    "section": "",
+    "text": "Welcome to my primary AI/ML live portfolio, Deep Learning Exploration! This is a website showcasing my interactive AI projects, along with Jupyter Notebooks and blog entries so you can get an idea for the process/code behind the projects. This site is actively in development, and I’m working on new models and projects - most of which will be embedded here from HuggingFace or a similar area.\nUse the links along the top menu to learn more and experiment with some of the models I’m working on. A dedicated blog on this site is also coming soon, where you can view Jupyter Notebooks and look at the insides of these models. The code for many of the models on this site comes from my corresponding GitHub repository.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  }
+]

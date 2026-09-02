@@ -1,0 +1,9 @@
+---
+title: "About"
+---
+
+Welcome to my primary AI/ML live portfolio, Deep Learning Exploration! This is a website showcasing my interactive AI projects, along with Jupyter Notebooks and blog entries so you can get an idea for the process/code behind the projects. This site is actively in development, and I'm working on new models and projects - most of which will be embedded here from HuggingFace or a similar area.
+
+On the menu bar above, you'll find links to a few of my completed projects. This includes the Painting Classifier and future neural-net models I'm working on with fast.ai and PyTorch.
+
+For a more high-level overview of my AI/ML projects, go to [discordantharmony.com](discordantharmony.com).
