@@ -165,6 +165,6 @@
     "href": "projects/cifar-classifier.html",
     "title": "CIFAR/Keras Image Classifier",
     "section": "",
-    "text": "Upload an image below to try the CIFAR Image Classification model, built with Tensorflow and Keras and trained on 60,000 images in the CIFAR-10 dataset. Current categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck"
+    "text": "Upload an image below to try the CIFAR Image Classification model, built with Tensorflow and Keras and trained on 60,000 images in the CIFAR-10 dataset. Current categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck. If possible, images should be taken of real-life objects (no video game vehicles, for example) and most of the subject should be visible.\n\n\nThis project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site’s Blog page."
   }
 ]
