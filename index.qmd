@@ -1,0 +1,9 @@
+---
+title: "Deep Learning Exploration"
+---
+
+Welcome to my primary AI/ML live portfolio, Deep Learning Exploration! This is a website showcasing my interactive AI projects, along with Jupyter Notebooks and blog entries so you can get an idea for the process/code behind the projects. This site is actively in development, and I'm working on new models and projects - most of which will be embedded here from HuggingFace or a similar area.
+
+Use the links along the top menu to learn more and experiment with some of the models I'm working on. A dedicated blog on this site is also coming soon, where you can view Jupyter Notebooks and look at the insides of these models. The code for many of the models on this site comes from my [corresponding GitHub repository](https://github.com/PontiacGTO2006/quarto-dl-site).
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

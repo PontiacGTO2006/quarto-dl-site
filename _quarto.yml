@@ -1,0 +1,23 @@
+project:
+  type: website
+
+website:
+  title: "Deep Learning Exploration"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects/painting-classifier.qmd
+        text: Painting Classifier
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+execute:
+  freeze: true
