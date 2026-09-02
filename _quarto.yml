@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Deep Learning Exploration"
+  favicon: assets/favicon.png
   navbar:
     left:
       - href: index.qmd

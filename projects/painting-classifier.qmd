@@ -4,6 +4,8 @@ title: "Ashryver Painting Classifier"
 
 Try the current revision of the Ashryver Painting Classifier (V1) below. This deep learning model is trained to recognize paintings by 20 different Impressionistic, Surrealist, Cubist, and Pop Art artists, and was trained using fast.ai and PyTorch. Work on an improved V2 is currently underway.
 
+*View the corresponding HuggingFace space [here](https://huggingface.co/spaces/DorianfirstmetAelinwh4-sEFOREBEEPBE/erilea-models)*.
+
 <iframe
   src="https://dorianfirstmetaelinwh4-seforebeepbe-erilea-models.hf.space"
   frameborder="0"

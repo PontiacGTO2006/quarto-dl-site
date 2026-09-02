@@ -6,4 +6,18 @@ Welcome to my primary AI/ML live portfolio, Deep Learning Exploration! This is a
 
 Use the links along the top menu to learn more and experiment with some of the models I'm working on. A dedicated blog on this site is also coming soon, where you can view Jupyter Notebooks and look at the insides of these models. The code for many of the models on this site comes from my [corresponding GitHub repository](https://github.com/PontiacGTO2006/quarto-dl-site).
 
+## Projects/content on this site
+* Ashryver Deep Learning Classifiers - these are painting classifiers that I'm currently working on, designed to classify works by 20-30 different arists. Version 1 is currently live; version 2 is in progress.
+* CIFAR Image Classification Model - this a complete and working model which is able to recognize images of everyday objects and output the correct classification. It has been trained on 60,000 images from the CIFAR dataset of everyday objects, and can identify images of airplanes, cars, buildings, animals, and others.
+* Kaggle Competition notebooks - these are Jupyter Notebooks I've created for a few of the introductory Kaggle competitions, some of which are incomplete.
+* Other miscellaneous notebooks for standalone explorations or data analysis projects.
+
+## Links to other resources
+Here are some other places where I'm hosting or displaying AI/ML projects and content:
+
+* [My primary portfolio website](https://discordantharmony.com/machine-learning-projects-ai-models/)
+* [HuggingFace account with insane username](https://huggingface.co/DorianfirstmetAelinwh4-sEFOREBEEPBE)
+* [GitHub Machine Learning repository](https://github.com/PontiacGTO2006/machine-learning)
+* [GitHub FastAI Repository](https://github.com/PontiacGTO2006/fastai-course)
+
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

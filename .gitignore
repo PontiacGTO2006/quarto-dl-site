@@ -11,3 +11,4 @@ __pycache__/
 .gitconfig
 .ipynb_checkpoints/
 painting_data.zip
+**/*.quarto_ipynb
