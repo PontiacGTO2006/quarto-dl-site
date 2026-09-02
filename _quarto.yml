@@ -10,6 +10,10 @@ website:
         text: Home
       - href: projects/painting-classifier.qmd
         text: Painting Classifier
+      - href: projects/cifar-classifier.qmd
+        text: CIFAR Image Classifier
+      - href: index.qmd
+        text: Blog/Other Projects
       - about.qmd
 
 format:
