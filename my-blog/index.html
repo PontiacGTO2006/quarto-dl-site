@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deep Learning Exploration</title>
+<title>Blog – Deep Learning Exploration</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,24 +29,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./assets/favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,19 +76,77 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="styles.css">
-</head>
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+<link rel="alternate" type="application/rss+xml" title="Deep Learning Exploration" href="index.xml" data-external="1"></head>
 
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Deep Learning Exploration</span>
     </a>
   </div>
@@ -97,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -106,25 +166,25 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
         <li>
-    <a class="dropdown-item" href="./projects/painting-classifier.html">
+    <a class="dropdown-item" href="../projects/painting-classifier.html">
  <span class="dropdown-text">Painting Classifier</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./projects/cifar-classifier.html">
+    <a class="dropdown-item" href="../projects/cifar-classifier.html">
  <span class="dropdown-text">CIFAR Image Classifier</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./projects/quickdraw-shapes.html">
+    <a class="dropdown-item" href="../projects/quickdraw-shapes.html">
  <span class="dropdown-text">QuickDraw Shape Recognition</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./my-blog/index.html"> 
+    <a class="nav-link active" href="../my-blog/index.html" aria-current="page"> 
 <span class="menu-text">Blog/Notebooks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -135,67 +195,108 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Blog</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#projectscontent-on-this-site" id="toc-projectscontent-on-this-site" class="nav-link active" data-scroll-target="#projectscontent-on-this-site">Projects/content on this site</a></li>
-  <li><a href="#links-to-other-resources" id="toc-links-to-other-resources" class="nav-link" data-scroll-target="#links-to-other-resources">Links to other resources</a></li>
-  </ul>
-</nav>
-    </div>
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Deep Learning Exploration</h1>
+
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1788411600000" data-listing-file-modified-sort="1788461026190" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="25">
+<div class="thumbnail"><a href="../my-blog/posts/painting-classifier-breakdown/index.html" class="no-external">
+
+<img loading="lazy" src="../my-blog/posts/painting-classifier-breakdown/image.jpg" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../my-blog/posts/painting-classifier-breakdown/index.html" class="no-external">Project Breakdown: Painting Classifier Model</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">analysis</div>
+
 </div>
+<div class="delink listing-description"><a href="../my-blog/posts/painting-classifier-breakdown/index.html" class="no-external">
+Post is currently in progress. Check back in a few days to read more about the <strong>Ashryver Painting Classifier Models</strong>, or try the model now.
+</a></div>
+</div>
+<div class="metadata">
+<a href="../my-blog/posts/painting-classifier-breakdown/index.html" class="no-external">
+<div class="listing-date">
+Sep 3, 2026
+</div>
+<div class="listing-author">
+Harlow Malloc
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="bmV3cw==" data-listing-date-sort="1788152400000" data-listing-file-modified-sort="1788460949212" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="122">
+<div class="thumbnail"><a href="../my-blog/posts/welcome/index.html" class="no-external">
 
+<p class="card-img-top"><img loading='lazy' src="posts\welcome\thumbnail.jpg"  class="thumbnail-image card-img"/></p>
 
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="../my-blog/posts/welcome/index.html" class="no-external">Welcome to Deep Learning Exploration</a>
+</h3>
+<div class="listing-categories">
 
-<div class="quarto-title-meta">
+<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Welcome to my primary AI/ML live portfolio, Deep Learning Exploration! This is a website showcasing my interactive AI projects, along with Jupyter Notebooks and blog entries so you can get an idea for the process/code behind the projects. This site is actively in development, and I’m working on new models and projects - most of which will be embedded here from HuggingFace or a similar area.</p>
-<p>Use the links along the top menu to learn more and experiment with some of the models I’m working on. A dedicated blog on this site is also coming soon, where you can view Jupyter Notebooks and look at the insides of these models. The code for many of the models on this site comes from my <a href="https://github.com/PontiacGTO2006/quarto-dl-site">corresponding GitHub repository</a>.</p>
-<section id="projectscontent-on-this-site" class="level2">
-<h2 class="anchored" data-anchor-id="projectscontent-on-this-site">Projects/content on this site</h2>
-<ul>
-<li>Ashryver Deep Learning Classifiers - these are painting classifiers that I’m currently working on, designed to classify works by 20-30 different arists. Version 1 is currently live; version 2 is in progress.</li>
-<li>CIFAR Image Classification Model - this a complete and working model which is able to recognize images of everyday objects and output the correct classification. It has been trained on 60,000 images from the CIFAR dataset of everyday objects, and can identify images of airplanes, cars, buildings, animals, and others.</li>
-<li>Kaggle Competition notebooks - these are Jupyter Notebooks I’ve created for a few of the introductory Kaggle competitions, some of which are incomplete.</li>
-<li>Other miscellaneous notebooks for standalone explorations or data analysis projects.</li>
-</ul>
-</section>
-<section id="links-to-other-resources" class="level2">
-<h2 class="anchored" data-anchor-id="links-to-other-resources">Links to other resources</h2>
-<p>Here are some other places where I’m hosting or displaying AI/ML projects and content:</p>
-<ul>
-<li><a href="https://discordantharmony.com/machine-learning-projects-ai-models/">My primary portfolio website</a></li>
-<li><a href="https://huggingface.co/DorianfirstmetAelinwh4-sEFOREBEEPBE">HuggingFace account with insane username</a></li>
-<li><a href="https://github.com/PontiacGTO2006/machine-learning">GitHub Machine Learning repository</a></li>
-<li><a href="https://github.com/PontiacGTO2006/fastai-course">GitHub FastAI Repository</a></li>
-</ul>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
-
-
-</section>
-
-</main> <!-- /main -->
+</div>
+<div class="delink listing-description"><a href="../my-blog/posts/welcome/index.html" class="no-external">
+This is the first blog post on this Quarto site. At the moment, I’m currently working on writing additional details and project information for three of the models currently…
+</a></div>
+</div>
+<div class="metadata">
+<a href="../my-blog/posts/welcome/index.html" class="no-external">
+<div class="listing-date">
+Aug 31, 2026
+</div>
+<div class="listing-author">
+2006Pontiac
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

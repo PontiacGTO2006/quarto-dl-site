@@ -1,35 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/projects/painting-classifier.html</loc>
-    <lastmod>2026-09-02T19:07:50.836Z</lastmod>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/projects/quickdraw-shapes.html</loc>
+    <lastmod>2026-09-03T18:30:27.642Z</lastmod>
   </url>
   <url>
-    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/painting-classifier/PAINTING_CLASSIFIER_GUIDE.html</loc>
-    <lastmod>2026-06-24T15:16:38.864Z</lastmod>
-  </url>
-  <url>
-    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/painting-classifier/painting-classifier-v1.html</loc>
-    <lastmod>2026-07-07T15:10:07.805Z</lastmod>
-  </url>
-  <url>
-    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/artistic-era-classifier.html</loc>
-    <lastmod>2026-07-08T22:18:44.763Z</lastmod>
-  </url>
-  <url>
-    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/about.html</loc>
-    <lastmod>2026-09-02T15:16:46.347Z</lastmod>
-  </url>
-  <url>
-    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/index.html</loc>
-    <lastmod>2026-09-02T19:16:39.578Z</lastmod>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/projects/cifar-classifier.html</loc>
+    <lastmod>2026-09-02T21:48:10.369Z</lastmod>
   </url>
   <url>
     <loc>https://PontiacGTO2006.github.io/quarto-dl-site/painting-classifier/painting-classifier-v2.html</loc>
     <lastmod>2026-07-07T15:19:37.117Z</lastmod>
   </url>
   <url>
-    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/projects/cifar-classifier.html</loc>
-    <lastmod>2026-09-02T21:48:10.369Z</lastmod>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/my-blog/posts/welcome/index.html</loc>
+    <lastmod>2026-09-03T18:42:29.212Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/my-blog/index.html</loc>
+    <lastmod>2026-09-03T18:35:22.072Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/index.html</loc>
+    <lastmod>2026-09-02T19:16:39.578Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/about.html</loc>
+    <lastmod>2026-09-02T15:16:46.347Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/artistic-era-classifier.html</loc>
+    <lastmod>2026-07-08T22:18:44.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/my-blog/about.html</loc>
+    <lastmod>2026-09-03T18:33:27.369Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/my-blog/posts/painting-classifier-breakdown/index.html</loc>
+    <lastmod>2026-09-03T18:43:46.190Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/painting-classifier/painting-classifier-v1.html</loc>
+    <lastmod>2026-07-07T15:10:07.805Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/painting-classifier/PAINTING_CLASSIFIER_GUIDE.html</loc>
+    <lastmod>2026-06-24T15:16:38.864Z</lastmod>
+  </url>
+  <url>
+    <loc>https://PontiacGTO2006.github.io/quarto-dl-site/projects/painting-classifier.html</loc>
+    <lastmod>2026-09-02T19:07:50.836Z</lastmod>
   </url>
 </urlset>
