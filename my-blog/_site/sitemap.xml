@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://your-website-url.example.com/index.html</loc>
+    <lastmod>2026-09-03T18:35:22.072Z</lastmod>
+  </url>
+  <url>
+    <loc>https://your-website-url.example.com/posts/post-with-code/index.html</loc>
+    <lastmod>2026-09-03T18:37:56.312Z</lastmod>
+  </url>
+  <url>
+    <loc>https://your-website-url.example.com/posts/welcome/index.html</loc>
+    <lastmod>2026-09-03T18:42:29.212Z</lastmod>
+  </url>
+  <url>
+    <loc>https://your-website-url.example.com/posts/painting-classifier-breakdown/index.html</loc>
+    <lastmod>2026-09-03T18:43:46.190Z</lastmod>
+  </url>
+</urlset>

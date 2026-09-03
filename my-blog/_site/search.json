@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Project Breakdown: Painting Classifier Model\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nSep 3, 2026\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome to Deep Learning Exploration\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nAug 31, 2026\n\n\n2006Pontiac\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Project Breakdown: Painting Classifier Model",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome to Deep Learning Exploration",
+    "section": "",
+    "text": "This is the first blog post on this Quarto site. At the moment, I’m currently working on writing additional details and project information for three of the models currently listed on this portfolio. They will appear right here on this blog page, accompanied with viewable code cells, Jupyter Notebook snippets, and some insights into how I developed those models.\nIn the meantime, you can play around and use those models by navigating to the “Projects” dropdown menu above. I’m currently working through the Practical Deep Learning with fast.ai course; more projects will be arriving soon as I progress through the modules!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/painting-classifier-breakdown/index.html",
+    "href": "posts/painting-classifier-breakdown/index.html",
+    "title": "Project Breakdown: Painting Classifier Model",
+    "section": "",
+    "text": "Post is currently in progress. Check back in a few days to read more about the Ashryver Painting Classifier Models, or try the model now."
+  }
+]

@@ -1,0 +1,16 @@
+---
+title: "QuickDraw Live Shape Recognition"
+---
+
+Use your mouse or stylus to draw in the area below, and this QuickDraw shape classification model will recognize the shape. There are three categories supported as per the Google QuickDraw dataset: **circle, square, and triangle**. The model also outputs a confidence interval for the shape.
+
+<iframe
+  src="https://dorianfirstmetaelinwh4-seforebeepbe-quickdraw-model.hf.space"
+  frameborder="0"
+  width="100%"
+  height="600">
+</iframe>
+
+*[View the full Google QuickDraw dataset here.](https://console.cloud.google.com/storage/browser/quickdraw_dataset/full/numpy_bitmap;tab=objects?pli=1&prefix=&forceOnObjectsSortingFiltering=false)* 
+
+*This project was built with Python 3.12, Pygame, and Keras. I have also trained a version of the model that can classify fruits, and the possibilities are practically unlimited due to Google's large volume of available numpy datasets. The primary limitation is that you may only have three categories. Project commentary and applicable notebooks are coming soon on the site's Blog page.*

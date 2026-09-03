@@ -8,12 +8,16 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: projects/painting-classifier.qmd
-        text: Painting Classifier
-      - href: projects/cifar-classifier.qmd
-        text: CIFAR Image Classifier
-      - href: index.qmd
-        text: Blog/Other Projects
+      - text: "Projects"
+        menu:
+          - text: "Painting Classifier"
+            href: projects/painting-classifier.qmd
+          - text: "CIFAR Image Classifier"
+            href: projects/cifar-classifier.qmd
+          - text: "QuickDraw Shape Recognition"
+            href: projects/quickdraw-shapes.qmd
+      - href: my-blog/index.qmd
+        text: Blog/Notebooks
       - about.qmd
 
 format:
