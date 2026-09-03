@@ -1,9 +1,11 @@
 ---
 title: "Project Breakdown: Painting Classifier Model"
-author: "Harlow Malloc"
+author: "2006Pontiac"
 date: "2026-09-03"
 categories: [news, code, analysis]
-image: "image.jpg"
+image: "painting-classifier-1.jpg"
 ---
 
 Post is currently in progress. Check back in a few days to read more about the **Ashryver Painting Classifier Models**, or [try the model now](https://pontiacgto2006.github.io/quarto-dl-site/projects/painting-classifier.html).
+
+[The Ashryver Painting Classifier in action](painting-classifier-1.jpg)
