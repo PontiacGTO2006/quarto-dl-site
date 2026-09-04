@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="2006Pontiac">
-<meta name="dcterms.date" content="2026-09-03">
+<meta name="dcterms.date" content="2026-09-04">
 
 <title>Project Breakdown: Painting Classifier Model – Deep Learning Exploration</title>
 <style>
@@ -27,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -162,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 3, 2026</p>
+        <p class="date">September 4, 2026</p>
       </div>
     </div>
     
@@ -173,8 +208,17 @@ ul.task-list li input[type="checkbox"] {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-training-process" id="toc-the-training-process" class="nav-link active" data-scroll-target="#the-training-process">The Training Process</a></li>
+  <li><a href="#the-evaluation-process" id="toc-the-evaluation-process" class="nav-link" data-scroll-target="#the-evaluation-process">The Evaluation Process</a></li>
+  <li><a href="#model-release-huggingface-gradio" id="toc-model-release-huggingface-gradio" class="nav-link" data-scroll-target="#model-release-huggingface-gradio">Model Release (HuggingFace, Gradio)</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -183,10 +227,107 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Post is currently in progress. Check back in a few days to read more about the <strong>Ashryver Painting Classifier Models</strong>, or <a href="https://pontiacgto2006.github.io/quarto-dl-site/projects/painting-classifier.html">try the model now</a>.</p>
-<p><a href="painting-classifier-1.jpg">The Ashryver Painting Classifier in action</a></p>
+<p>In this blog post, I will provide a comprehensive overview of the <strong>Ashryver V1 Painting Classifier</strong>, a classification model designed to identify paintings by 20 different Impressionistic artists. <strong>It is trained on the fast.ai library</strong>, utilizes the resnet50 model, and contains 400 training images per artist for a total of approximately 8,000 items.</p>
+<p>Since this is a relatively entry-level model (no complex ML techniques or neural networks; just a simple fast.ai learner implementation), this will be a pretty short post. I will include code snippest throughout the post so you can see portions of the model architecture.</p>
+<section id="the-training-process" class="level1">
+<h1>The Training Process</h1>
+<p>I used the fast.ai foundational framework for this project, moving away from the clunky and cumbersome Tensorflow libraries I had been familiar with before. fast.ai is just an upper layer of Pytorch, which is the latest and most efficient machine learning library. I was blown away by how easy it is to instantly create and train a deep learning model; all it takes is just a few different code cells and some DataBlocks. After data preparation was completed, here is the entirety of the code that I used to get to the training stage of the model:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check to see if any of the images failed to download properly</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>failed <span class="op">=</span> verify_images(get_image_files(painting_data_updated))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># verify_images returns a list (or L) of file paths that failed verification</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> f <span class="kw">in</span> failed:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        Path(f).unlink()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f'Could not remove </span><span class="sc">{</span>f<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Removed </span><span class="sc">{</span><span class="bu">len</span>(failed)<span class="sc">}</span><span class="ss"> failed images.'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Datablock</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> DataBlock(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(ImageBlock, CategoryBlock),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>RandomSplitter(valid_pct<span class="op">=</span><span class="fl">0.2</span>, seed<span class="op">=</span><span class="dv">42</span>), <span class="co"># split 20% of the data off for validation</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    get_y<span class="op">=</span>parent_label,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    item_tfms<span class="op">=</span>[Resize(<span class="dv">448</span>, method<span class="op">=</span><span class="st">'squish'</span>)]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>).dataloaders(painting_data_updated, bs<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">20</span>) <span class="co"># show a sample of 20 images that the model will be trained upon</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the resnet50 model</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> vision_learner(dls, resnet50, metrics<span class="op">=</span>error_rate)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">4</span>) <span class="co"># train for 4 epochs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Although the Ashryver model’s dataset was modestly sized (8,000 images versus hundreds of thousands for some other models), it ended up doing the job very well. I did have to go through several training runs to get the accuracy above its initial poor score of 0.60, but things turned out well in the end.</p>
+<p>At first I was using the resnet34 model, which was rumored to be exceptionally good at classifying paintings. This is one of PyTorch’s pretrained models, and it’s called resnet34 because it has 34 layers in its convolutional neural network. This worked out okay, but generally you want to be achieving higher than 0.60 validation accuracy for a classification model. So I decided to <strong>switch to the resnet50 model</strong>, which prefers an image size of 224 x 224 pixels and has 50 layers in its CNN. This model performed substantially better, first achieving an accuracy of 0.77 on the initial 1800-image dataset, and then 0.89 on the final 2700-image dataset.</p>
+</section>
+<section id="the-evaluation-process" class="level1">
+<h1>The Evaluation Process</h1>
+<p>Of course, I needed to obtain a full classification report on the model before releasing it anywhere. I was previously unfamiliar with how to do this in fast.ai. However, some quick googling revealed that it’s actually not that complicated, and similar in many ways to the process with Tensorflow. Here’s the code I used to check the model’s results and then save the latest version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> load_learner(<span class="st">'painting_classifier_resnet50_400perartist_224x224.pkl'</span>) <span class="co"># load the trained model</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PILImage.create(<span class="st">'painting-test-5.jpg'</span>) <span class="co"># feed in the test image</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>pred_label, pred_idx, all_probs <span class="op">=</span> learn.predict(img)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>formatted_pred <span class="op">=</span> pred_label.capitalize() <span class="co"># capitalize the artist's name in the prediction</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"This is a </span><span class="sc">{</span>formatted_pred<span class="sc">}</span><span class="ss"> painting.</span><span class="ch">\n</span><span class="ss">============================</span><span class="ch">\n</span><span class="ss">All Probabilities"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> class_name, probability <span class="kw">in</span> <span class="bu">zip</span>(learn.dls.vocab, all_probs):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    prob_val <span class="op">=</span> probability <span class="op">*</span> <span class="dv">100</span> <span class="co"># format to a percentage</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> class_name <span class="op">==</span> pred_label:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\033</span><span class="ss">[1;32m</span><span class="sc">{</span>class_name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>prob_val<span class="sc">:.2f}</span><span class="ss">%</span><span class="ch">\033</span><span class="ss">[0m"</span>) <span class="co"># output the predicted label as bold and green</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>class_name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>prob_val<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>show_image(img)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the latest model version</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>learn.export(<span class="st">'painting_classifier_resnet50_newdata_224x224.pkl'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>All in all, it took about two and a half weeks before I got a model that I was satisfied with. Since my setup involved <strong>using remote Kaggle Jupyter Servers</strong> with more GPU power to do training runs, I did have to take more time each session to navigate to Kaggle, connect it to VS Code where I was working, and re-download any environment files. However, my laptop definitely would not have been able to perform such intense training in a timely manner.</p>
+</section>
+<section id="model-release-huggingface-gradio" class="level1">
+<h1>Model Release (HuggingFace, Gradio)</h1>
+<p>Once the training and evaluation was done, I moved onto the production process. I had some initial difficulties with HuggingFace in setting up a space for the model; this was due to runtime errors and issues with the way I’d set up the GitHub repository that pushed to the space. HuggingFace demands a very complicated system of API keys and has stringent restrictions on file sizes, so I had to battle those for a while as I moved the .pkl model files into the space.</p>
+<p>Now, the painting classifier is successfully running in a HuggingFace space, which I’ve set up and named ‘erilea-models’ to embody the fictional continent of Erilea. This space behaves somewhat like a GitHub repository, which you can clone down to your computer to add code and add models that can be represented using HuggingFace’s UI. All I had to do with this repository was drop in my pre-trained model in the form of a PKL file, and then call that file in an <em>app.py</em> script to make predictions using a simple notebook. That notebook then launched a Gradio interface (essentially what creates the graphical UI you see on the space itself) that allowed the model to make live predictions.</p>
+<p>Below is the entirety of the app.py script I used to get the model to output live predictions. Again, very simple:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> load_learner(<span class="st">'models/painting_classifier_resnet50_400perartist_224x224.pkl'</span>) <span class="co"># import model from pkl file</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: HuggingFace has changed their policy in the 2 months since I set up this space, </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># and they now demand that free-tier users use the ZeroGPU mode instead of the Basic CPU tier</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># for some unknown reason. (As a result, you can now only have 2 free spaces). </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># You will need to create a dummy function that calles @spaces.GPU, otherwise a runtime error will be thrown.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup our image classification function </span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> <span class="bu">list</span>(learn.dls.vocab) </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_image(img):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> img <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> {}</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    img_pil <span class="op">=</span> PILImage.create(img)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    pred, idx, probs <span class="op">=</span> learn.predict(img_pil)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">dict</span>(<span class="bu">zip</span>(categories, <span class="bu">map</span>(<span class="bu">float</span>, probs)))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch a local URL via Gradio</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> gr.Image()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> gr.Label()</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>examples <span class="op">=</span> [<span class="st">'images/painting-test-1.jpg'</span>, <span class="st">'images/painting-test-2.png'</span>, <span class="st">'images/painting-test-7.png'</span>, <span class="st">'images/painting-test-8.jpg'</span>, <span class="st">'images/painting-test-11.jpg'</span>] <span class="co"># default images that the user can choose in the UI</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>intf <span class="op">=</span> gr.Interface(</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    fn<span class="op">=</span>classify_image, </span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    inputs<span class="op">=</span>image, </span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    outputs<span class="op">=</span>label, </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    examples<span class="op">=</span>examples,</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    cache_examples<span class="op">=</span><span class="va">False</span> <span class="co"># This prevents the startup loop crash and subsequent 500 error if files are broken</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    intf.launch(auth<span class="op">=</span>(<span class="st">"harbonk"</span>, <span class="st">"test12345"</span>)) <span class="co"># Insane placeholder auth system I added</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This way, you don’t have to clone down the entire repository and install a bunch of insane packages to play around with the model. You can just go to the HuggingFace space (which I’ve made public), upload your own images, and have it make predictions. Even better, you can come right here to this website and use the model on this portfolio, instead of having to create a HuggingFace account in the future. <strong>I could go so far as to generate custom JavaScript</strong> to customize the appearance of these embeds, but <strong>there’s nothing wrong with the way they look now</strong>. So, I think my time would be better spent progressing to the next project.</p>
+</section>
+<section id="next-steps" class="level1">
+<h1>Next Steps</h1>
+<p><em>Section currently in progress. Please check back later.</em></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

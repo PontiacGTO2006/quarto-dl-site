@@ -10,7 +10,7 @@
 <atom:link href="https://PontiacGTO2006.github.io/quarto-dl-site/my-blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 03 Sep 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 04 Sep 2026 05:00:00 GMT</lastBuildDate>
 <item>
   <title>Project Breakdown: Painting Classifier Model</title>
   <dc:creator>2006Pontiac </dc:creator>
@@ -21,17 +21,438 @@
 
 
 
-<p>Post is currently in progress. Check back in a few days to read more about the <strong>Ashryver Painting Classifier Models</strong>, or <a href="https://pontiacgto2006.github.io/quarto-dl-site/projects/painting-classifier.html">try the model now</a>.</p>
-<p><a href="painting-classifier-1.jpg">The Ashryver Painting Classifier in action</a></p>
+<p>In this blog post, I will provide a comprehensive overview of the <strong>Ashryver V1 Painting Classifier</strong>, a classification model designed to identify paintings by 20 different Impressionistic artists. <strong>It is trained on the fast.ai library</strong>, utilizes the resnet50 model, and contains 400 training images per artist for a total of approximately 8,000 items.</p>
+<p>Since this is a relatively entry-level model (no complex ML techniques or neural networks; just a simple fast.ai learner implementation), this will be a pretty short post. I will include code snippest throughout the post so you can see portions of the model architecture.</p>
+<section id="the-training-process" class="level1">
+<h1>The Training Process</h1>
+<p>I used the fast.ai foundational framework for this project, moving away from the clunky and cumbersome Tensorflow libraries I had been familiar with before. fast.ai is just an upper layer of Pytorch, which is the latest and most efficient machine learning library. I was blown away by how easy it is to instantly create and train a deep learning model; all it takes is just a few different code cells and some DataBlocks. After data preparation was completed, here is the entirety of the code that I used to get to the training stage of the model:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Check to see if any of the images failed to download properly</span></span>
+<span id="cb1-2">failed <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> verify_images(get_image_files(painting_data_updated))</span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># verify_images returns a list (or L) of file paths that failed verification</span></span>
+<span id="cb1-4"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> f <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> failed:</span>
+<span id="cb1-5">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">try</span>:</span>
+<span id="cb1-6">        Path(f).unlink()</span>
+<span id="cb1-7">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">except</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">Exception</span> <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> e:</span>
+<span id="cb1-8">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'Could not remove </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>f<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>e<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb1-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f'Removed </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(failed)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> failed images.'</span>)</span>
+<span id="cb1-10"></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create the Datablock</span></span>
+<span id="cb1-12">dls <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> DataBlock(</span>
+<span id="cb1-13">    blocks<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(ImageBlock, CategoryBlock),</span>
+<span id="cb1-14">    get_items<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>get_image_files,</span>
+<span id="cb1-15">    splitter<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>RandomSplitter(valid_pct<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>, seed<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>), <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># split 20% of the data off for validation</span></span>
+<span id="cb1-16">    get_y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>parent_label,</span>
+<span id="cb1-17">    item_tfms<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[Resize(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">448</span>, method<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'squish'</span>)]</span>
+<span id="cb1-18">).dataloaders(painting_data_updated, bs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">32</span>)</span>
+<span id="cb1-19"></span>
+<span id="cb1-20">dls.show_batch(max_n<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># show a sample of 20 images that the model will be trained upon</span></span>
+<span id="cb1-21"></span>
+<span id="cb1-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Train the resnet50 model</span></span>
+<span id="cb1-23">learn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> vision_learner(dls, resnet50, metrics<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>error_rate)</span>
+<span id="cb1-24">learn.fine_tune(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># train for 4 epochs</span></span></code></pre></div></div>
+<p>Although the Ashryver model’s dataset was modestly sized (8,000 images versus hundreds of thousands for some other models), it ended up doing the job very well. I did have to go through several training runs to get the accuracy above its initial poor score of 0.60, but things turned out well in the end.</p>
+<p>At first I was using the resnet34 model, which was rumored to be exceptionally good at classifying paintings. This is one of PyTorch’s pretrained models, and it’s called resnet34 because it has 34 layers in its convolutional neural network. This worked out okay, but generally you want to be achieving higher than 0.60 validation accuracy for a classification model. So I decided to <strong>switch to the resnet50 model</strong>, which prefers an image size of 224 x 224 pixels and has 50 layers in its CNN. This model performed substantially better, first achieving an accuracy of 0.77 on the initial 1800-image dataset, and then 0.89 on the final 2700-image dataset.</p>
+</section>
+<section id="the-evaluation-process" class="level1">
+<h1>The Evaluation Process</h1>
+<p>Of course, I needed to obtain a full classification report on the model before releasing it anywhere. I was previously unfamiliar with how to do this in fast.ai. However, some quick googling revealed that it’s actually not that complicated, and similar in many ways to the process with Tensorflow. Here’s the code I used to check the model’s results and then save the latest version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">learn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> load_learner(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'painting_classifier_resnet50_400perartist_224x224.pkl'</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># load the trained model</span></span>
+<span id="cb2-2"></span>
+<span id="cb2-3">img <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> PILImage.create(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'painting-test-5.jpg'</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># feed in the test image</span></span>
+<span id="cb2-4"></span>
+<span id="cb2-5">pred_label, pred_idx, all_probs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> learn.predict(img)</span>
+<span id="cb2-6">formatted_pred <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pred_label.capitalize() <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># capitalize the artist's name in the prediction</span></span>
+<span id="cb2-7"></span>
+<span id="cb2-8"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"This is a </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>formatted_pred<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> painting.</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">============================</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">All Probabilities"</span>)</span>
+<span id="cb2-9"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> class_name, probability <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">zip</span>(learn.dls.vocab, all_probs):</span>
+<span id="cb2-10">    prob_val <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> probability <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># format to a percentage</span></span>
+<span id="cb2-11">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> class_name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> pred_label:</span>
+<span id="cb2-12">            <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\033</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">[1;32m</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>class_name<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>prob_val<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\033</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">[0m"</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># output the predicted label as bold and green</span></span>
+<span id="cb2-13">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb2-14">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>class_name<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>prob_val<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">%"</span>)</span>
+<span id="cb2-15">show_image(img)</span>
+<span id="cb2-16"></span>
+<span id="cb2-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Save the latest model version</span></span>
+<span id="cb2-18">learn.export(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'painting_classifier_resnet50_newdata_224x224.pkl'</span>)</span></code></pre></div></div>
+<p>All in all, it took about two and a half weeks before I got a model that I was satisfied with. Since my setup involved <strong>using remote Kaggle Jupyter Servers</strong> with more GPU power to do training runs, I did have to take more time each session to navigate to Kaggle, connect it to VS Code where I was working, and re-download any environment files. However, my laptop definitely would not have been able to perform such intense training in a timely manner.</p>
+</section>
+<section id="model-release-huggingface-gradio" class="level1">
+<h1>Model Release (HuggingFace, Gradio)</h1>
+<p>Once the training and evaluation was done, I moved onto the production process. I had some initial difficulties with HuggingFace in setting up a space for the model; this was due to runtime errors and issues with the way I’d set up the GitHub repository that pushed to the space. HuggingFace demands a very complicated system of API keys and has stringent restrictions on file sizes, so I had to battle those for a while as I moved the .pkl model files into the space.</p>
+<p>Now, the painting classifier is successfully running in a HuggingFace space, which I’ve set up and named ‘erilea-models’ to embody the fictional continent of Erilea. This space behaves somewhat like a GitHub repository, which you can clone down to your computer to add code and add models that can be represented using HuggingFace’s UI. All I had to do with this repository was drop in my pre-trained model in the form of a PKL file, and then call that file in an <em>app.py</em> script to make predictions using a simple notebook. That notebook then launched a Gradio interface (essentially what creates the graphical UI you see on the space itself) that allowed the model to make live predictions.</p>
+<p>Below is the entirety of the app.py script I used to get the model to output live predictions. Again, very simple:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> fastai.vision.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">all</span> <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb3-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> gradio <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> gr</span>
+<span id="cb3-3"></span>
+<span id="cb3-4">learn <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> load_learner(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'models/painting_classifier_resnet50_400perartist_224x224.pkl'</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># import model from pkl file</span></span>
+<span id="cb3-5"></span>
+<span id="cb3-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># </span><span class="al" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">NOTE</span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">: HuggingFace has changed their policy in the 2 months since I set up this space, </span></span>
+<span id="cb3-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># and they now demand that free-tier users use the ZeroGPU mode instead of the Basic CPU tier</span></span>
+<span id="cb3-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># for some unknown reason. (As a result, you can now only have 2 free spaces). </span></span>
+<span id="cb3-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># You will need to create a dummy function that calles @spaces.GPU, otherwise a runtime error will be thrown.</span></span>
+<span id="cb3-10"></span>
+<span id="cb3-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Setup our image classification function </span></span>
+<span id="cb3-12">categories <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">list</span>(learn.dls.vocab) </span>
+<span id="cb3-13"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> classify_image(img):</span>
+<span id="cb3-14">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> img <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>:</span>
+<span id="cb3-15">        <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> {}</span>
+<span id="cb3-16">    img_pil <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> PILImage.create(img)</span>
+<span id="cb3-17">    pred, idx, probs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> learn.predict(img_pil)</span>
+<span id="cb3-18">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">dict</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">zip</span>(categories, <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">map</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">float</span>, probs)))</span>
+<span id="cb3-19"></span>
+<span id="cb3-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Launch a local URL via Gradio</span></span>
+<span id="cb3-21">image <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> gr.Image()</span>
+<span id="cb3-22">label <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> gr.Label()</span>
+<span id="cb3-23">examples <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'images/painting-test-1.jpg'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'images/painting-test-2.png'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'images/painting-test-7.png'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'images/painting-test-8.jpg'</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'images/painting-test-11.jpg'</span>] <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># default images that the user can choose in the UI</span></span>
+<span id="cb3-24">intf <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> gr.Interface(</span>
+<span id="cb3-25">    fn<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>classify_image, </span>
+<span id="cb3-26">    inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>image, </span>
+<span id="cb3-27">    outputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>label, </span>
+<span id="cb3-28">    examples<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>examples,</span>
+<span id="cb3-29">    cache_examples<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># This prevents the startup loop crash and subsequent 500 error if files are broken</span></span>
+<span id="cb3-30">)</span>
+<span id="cb3-31"></span>
+<span id="cb3-32"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">__name__</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"__main__"</span>:</span>
+<span id="cb3-33">    intf.launch(auth<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"harbonk"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"test12345"</span>)) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Insane placeholder auth system I added</span></span></code></pre></div></div>
+<p>This way, you don’t have to clone down the entire repository and install a bunch of insane packages to play around with the model. You can just go to the HuggingFace space (which I’ve made public), upload your own images, and have it make predictions. Even better, you can come right here to this website and use the model on this portfolio, instead of having to create a HuggingFace account in the future. <strong>I could go so far as to generate custom JavaScript</strong> to customize the appearance of these embeds, but <strong>there’s nothing wrong with the way they look now</strong>. So, I think my time would be better spent progressing to the next project.</p>
+</section>
+<section id="next-steps" class="level1">
+<h1>Next Steps</h1>
+<p><em>Section currently in progress. Please check back later.</em></p>
 
 
+</section>
 
  ]]></description>
   <category>news</category>
   <category>code</category>
   <category>analysis</category>
   <guid>https://PontiacGTO2006.github.io/quarto-dl-site/my-blog/posts/painting-classifier-breakdown/</guid>
-  <pubDate>Thu, 03 Sep 2026 05:00:00 GMT</pubDate>
+  <pubDate>Fri, 04 Sep 2026 05:00:00 GMT</pubDate>
   <media:content url="https://PontiacGTO2006.github.io/quarto-dl-site/my-blog/posts/painting-classifier-breakdown/painting-classifier-1.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
