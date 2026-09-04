@@ -22,11 +22,11 @@
 
 
 <p>Post is currently in progress. Check back in a few days to read more about the <strong>Ashryver Painting Classifier Models</strong>, or <a href="https://pontiacgto2006.github.io/quarto-dl-site/projects/painting-classifier.html">try the model now</a>.</p>
-<p><a href="">The Ashryver Painting Classifier in action</a>painting-classifier-1.jpg)</p>
+<p><img src="https://your-website-url.example.com/posts/painting-classifier-breakdown/painting-classifier-1.jpg" alt="The Ashryver V1 Painting Classifier in action">
 
 
 
- ]]></description>
+</p> ]]></description>
   <category>news</category>
   <category>code</category>
   <category>analysis</category>
