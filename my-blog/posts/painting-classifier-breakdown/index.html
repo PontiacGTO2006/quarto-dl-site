@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="2006Pontiac">
-<meta name="dcterms.date" content="2026-09-04">
+<meta name="dcterms.date" content="2026-09-06">
 
 <title>Project Breakdown: Painting Classifier Model – Deep Learning Exploration</title>
 <style>
@@ -197,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">September 4, 2026</p>
+        <p class="date">September 6, 2026</p>
       </div>
     </div>
     
@@ -216,7 +216,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-training-process" id="toc-the-training-process" class="nav-link active" data-scroll-target="#the-training-process">The Training Process</a></li>
   <li><a href="#the-evaluation-process" id="toc-the-evaluation-process" class="nav-link" data-scroll-target="#the-evaluation-process">The Evaluation Process</a></li>
   <li><a href="#model-release-huggingface-gradio" id="toc-model-release-huggingface-gradio" class="nav-link" data-scroll-target="#model-release-huggingface-gradio">Model Release (HuggingFace, Gradio)</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next Steps</a></li>
   </ul>
 </nav>
     </div>
@@ -227,6 +226,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="painting-classifier-1.jpg" class="img-fluid figure-img"></p>
+<figcaption>The Ashryver painting classifier in action on HuggingFace</figcaption>
+</figure>
+</div>
 <p>In this blog post, I will provide a comprehensive overview of the <strong>Ashryver V1 Painting Classifier</strong>, a classification model designed to identify paintings by 20 different Impressionistic artists. <strong>It is trained on the fast.ai library</strong>, utilizes the resnet50 model, and contains 400 training images per artist for a total of approximately 8,000 items.</p>
 <p>Since this is a relatively entry-level model (no complex ML techniques or neural networks; just a simple fast.ai learner implementation), this will be a pretty short post. I will include code snippest throughout the post so you can see portions of the model architecture.</p>
 <section id="the-training-process" class="level1">
@@ -295,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: HuggingFace has changed their policy in the 2 months since I set up this space, </span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># and they now demand that free-tier users use the ZeroGPU mode instead of the Basic CPU tier</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># for some unknown reason. (As a result, you can now only have 2 free spaces). </span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># You will need to create a dummy function that calles @spaces.GPU, otherwise a runtime error will be thrown.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># You will need to create a dummy function that calls @spaces.GPU, otherwise a runtime error will be thrown.</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup our image classification function </span></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> <span class="bu">list</span>(learn.dls.vocab) </span>
@@ -319,12 +324,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    intf.launch(auth<span class="op">=</span>(<span class="st">"harbonk"</span>, <span class="st">"test12345"</span>)) <span class="co"># Insane placeholder auth system I added</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This way, you don’t have to clone down the entire repository and install a bunch of insane packages to play around with the model. You can just go to the HuggingFace space (which I’ve made public), upload your own images, and have it make predictions. Even better, you can come right here to this website and use the model on this portfolio, instead of having to create a HuggingFace account in the future. <strong>I could go so far as to generate custom JavaScript</strong> to customize the appearance of these embeds, but <strong>there’s nothing wrong with the way they look now</strong>. So, I think my time would be better spent progressing to the next project.</p>
-</section>
-<section id="next-steps" class="level1">
-<h1>Next Steps</h1>
-<p><em>Section currently in progress. Please check back later.</em></p>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    intf.launch(auth<span class="op">=</span>(<span class="st">"harbonk"</span>, <span class="st">"test12345"</span>)) <span class="co"># Insane placeholder auth system I added via HF</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This way, you don’t have to clone down the entire repository and install a bunch of insane packages to play around with the model. You can just go to the HuggingFace space (which I’ve made public), upload your own images, and have it make predictions. Even better, you can come right here to this website and use the model on this portfolio, instead of having to create a HuggingFace account in the future. <strong>I could go so far as to generate custom JavaScript</strong> to customize the appearance of these embeds, but <strong>there’s nothing wrong with the way they look now</strong>. # Next Steps <em>Section currently in progress. Please check back later.</em> I’m currently attempting to design custom CSS/JavaScript for at least the painting classifier model. If this falls through, turns out to be a huge bother, or goes on for much more than a few days, I’ll switch away and move onto the next unit in the fast.ai course. My plan is to also <strong>output additional insights</strong> into the predicted artist, instead of just classifying the image, so the model is a bit more useful.</p>
+<p>Stay tuned for further updates on the models, which will be posted right here on this blog! And <strong>don’t forget to check out my primary portfolio site, <a href="discordantharmony.com">discordantharmony.com</a> for higher-level updates on everything else</strong>.</p>
 
 
 </section>
