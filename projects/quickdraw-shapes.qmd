@@ -5,6 +5,7 @@ title: "QuickDraw Live Shape Recognition"
 Use your mouse or stylus to draw in the area below, and this QuickDraw shape classification model will recognize the shape. There are three categories supported as per the Google QuickDraw dataset: **circle, square, and triangle**. The model also outputs a confidence interval for the shape.
 
 <iframe
+  class="model-embed"
   src="https://dorianfirstmetaelinwh4-seforebeepbe-quickdraw-model.hf.space"
   frameborder="0"
   width="100%"

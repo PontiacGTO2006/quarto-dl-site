@@ -5,7 +5,7 @@ date: "2026-08-31"
 categories: [news]
 ---
 
-This is the first blog post on this Quarto site. At the moment, I'm currently working on writing additional details and project information for three of the models currently listed on this portfolio. They will appear right here on this blog page, accompanied with viewable code cells, Jupyter Notebook snippets, and some insights into how I developed those models.
+This is the first blog post on this Quarto site. At the moment, I'm currently working on writing additional details and project information for two of the three models currently listed on this portfolio (the painting classifier post is now available). They will appear right here on this blog page, accompanied with viewable code cells, Jupyter Notebook snippets, and some insights into how I developed those models.
 
 In the meantime, you can play around and use those models by navigating to the "Projects" dropdown menu above. I'm currently working through the **Practical Deep Learning with fast.ai** course; more projects will be arriving soon as I progress through the modules!
 

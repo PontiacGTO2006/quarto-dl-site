@@ -1,0 +1,11 @@
+---
+title: "Project Breakdown: QuickDraw Shape Recognition Model"
+author: "2006Pontiac"
+date: "2026-09-07"
+categories: [news, code, analysis]
+image: "quickdraw-model-1.jpg"
+---
+
+![The Ashryver painting classifier in action on HuggingFace](painting-classifier-1.jpg)
+
+*Post currently in progress. Please check back later.*
