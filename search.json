@@ -208,5 +208,12 @@
     "title": "Ashryver Painting Classifier",
     "section": "",
     "text": "Try the current revision of the Ashryver Painting Classifier (V1) below. This deep learning model is trained to recognize paintings by 20 different Impressionistic, Surrealist, Cubist, and Pop Art artists, and was trained using fast.ai and PyTorch. Work on an improved V2 is currently underway.\nView the corresponding HuggingFace space here."
+  },
+  {
+    "objectID": "projects/painting-classifier.html#alternative-custom-ui-in-development-may-be-unstable",
+    "href": "projects/painting-classifier.html#alternative-custom-ui-in-development-may-be-unstable",
+    "title": "Ashryver Painting Classifier",
+    "section": "Alternative Custom UI (in development; may be unstable)",
+    "text": "Alternative Custom UI (in development; may be unstable)\n\n\nIdentify Artist Style"
   }
 ]

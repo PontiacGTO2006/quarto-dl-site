@@ -1,7 +1,23 @@
-/* css styles */
+/* this style is only used for the basic non-customizable model embeds and will be removed
+once the custom JS/CSS is added */
 .model-embed {
     border: none;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     overflow: hidden;
+}
+
+/* custom CSS for model classifier widget */
+.classifier-widget {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #faf8f5;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.result-panel {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-left: 4px solid #c9a227;
+  background: #fff;
+  border-radius: 8px;
 }
