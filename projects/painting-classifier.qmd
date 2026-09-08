@@ -16,6 +16,8 @@ Try the current revision of the Ashryver Painting Classifier (V1) below. This de
   height="600">
 </iframe>
 
+
+## Alternative Custom UI (in development; may be unstable)
 ```{=html}
 <div class="classifier-widget">
 <input type="file" id="artInput" accept="image/*" />
