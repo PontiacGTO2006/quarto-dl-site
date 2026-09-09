@@ -177,11 +177,29 @@ ul.task-list li input[type="checkbox"] {
 <section id="alternative-custom-ui-in-development-may-be-unstable" class="level2">
 <h2 class="anchored" data-anchor-id="alternative-custom-ui-in-development-may-be-unstable">Alternative Custom UI (in development; may be unstable)</h2>
 <div class="classifier-widget">
-<input type="file" id="artInput" accept="image/*">
-<button id="classifyBtn">Identify Artist Style</button>
+<div id="dropZone" class="drop-zone">
+<p class="drop-zone-text">Drag &amp; drop an image here, or</p>
+<input type="file" id="artInput" accept="image/*" class="custom-input">
+<label for="artInput" class="btn-custom">Choose File</label>
+</div>
+<img id="imagePreview" class="image-preview" style="display:none;" alt="Uploaded painting preview">
+<div class="button-row">
+<button id="classifyBtn" class="classify-btn">Identify Painting</button>
+<button id="clearBtn" class="clear-btn" style="display:none;">Clear</button>
+</div>
 <div id="result" class="result-panel" style="display:none;">
 <h3 id="predictedClass" class="anchored"></h3>
 <p id="artistBio"></p>
+</div>
+<div class="example-row">
+<p class="example-label">Or try an example:</p>
+<div class="example-thumbs">
+<img class="example-thumb" src="../assets/example_images/painting-test-1.jpg" alt="Example painting 1">
+<img class="example-thumb" src="../assets/example_images/painting-test-2.png" alt="Example painting 2">
+<img class="example-thumb" src="../assets/example_images/painting-test-8.jpg" alt="Example painting 3">
+<img class="example-thumb" src="../assets/example_images/painting-test-5.jpg" alt="Example painting 4">
+<img class="example-thumb" src="../assets/example_images/painting-test-11.jpg" alt="Example painting 4">
+</div>
 </div>
 </div>
 
