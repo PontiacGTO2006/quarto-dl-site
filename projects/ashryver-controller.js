@@ -4,15 +4,15 @@
  * upon prediction.
  */
 
-// TODO: capitalize the artist's name in the prediction output so that getting artist info from the artistInfo constant would be made easier
-// TODO: display the inputted image somewhere in the output box so that users can see
+// TODO: change sidebar design of outputted prediction - maybe make the colored border go all the way around
+// TODO: add footer text displaying emergency HuggingFace links and sharing links
 
 const artistInfo = {
-  "van gogh": "(1853-1890) Dutch Post-Impressionist known for bold color and expressive brushwork.",
+  "van gogh": "(1853-1890) Dutch Post-Impressionist known for bold color and expressive brushwork, famous for his painting Starry Night. Learn more link",
   "monet": "(1840-1926) French Impressionist, best known for his water lily series and his quick, loose brushstrokes that blend from a distance.",
   "warhol": "(1928-1987) An American artist and filmmaker whose work explores the relationship between advertising, consumerism, mass media, and celebrity culture.",
   "renoir": "(1841-1919) A French Impressionist whose work is famous for capturing vibrant light, joyful social crowds, and soft feminine beauty.",
-  "degas": "(1834-1917) A French artist celebrated for his images of Parisian life.",
+  "degas": "(1834-1917) A French Impressionist artist celebrated for his images of Parisian life. However, he preferred to classify himself as a Realist.",
   "morisot": "(1841-1895) A leading French painter known for her loose, rapid brushstrokes and luminous use of light.",
   "cassatt": "(1844-1926) An American painter and printmaker known for her tender, realistic portrayals of the social and private lives of women.",
   "cezanne": "(1839-1906) A French post-Impressionist painter known for his revolutionary approach to form, color, and perspective.",
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const submitJson = await submitRes.json();
       console.log("5. Submit body:", submitJson);
       const { event_id } = submitJson;
-      if (!event_id) { console.error("No event_id — see body logged above"); return; }
+      if (!event_id) { console.error("No event_id! see body logged above"); return; }
 
       const stream = new EventSource(`https://dorianfirstmetaelinwh4-seforebeepbe-erilea-models.hf.space/gradio_api/call/classify_image/${event_id}`);
       console.log("6. Stream opened for", event_id);
@@ -108,7 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const payload = JSON.parse(e.data);
         console.log("7. Result:", payload);
         const predictedClass = payload[0].label;
-        setText("predictedClass", predictedClass);
+        let capitalizedClass = predictedClass.charAt(0).toUpperCase() + predictedClass.slice(1);
+        setText("predictedClass", capitalizedClass);
         setText("artistBio", artistInfo[predictedClass] || "No info available.");
         document.getElementById("result").style.display = "block";
         stream.close();

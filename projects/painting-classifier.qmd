@@ -21,7 +21,7 @@ Try the current revision of the Ashryver Painting Classifier (V1) below. This de
 ```{=html}
 <div class="classifier-widget">
 <div id="dropZone" class="drop-zone">
-<p class="drop-zone-text">Drag &amp; drop an image here, or</p>
+<p class="drop-zone-text">Drag and drop an image here, or</p>
 <input type="file" id="artInput" accept="image/*" class="custom-input"/>
 <label for="artInput" class="btn-custom">Choose File</label>
 </div>
