@@ -12,4 +12,39 @@ Upload an image below to try the CIFAR Image Classification model, built with Te
   height="600">
 </iframe>
 
+## Alternate Custom UI (in progress, may be unstable)
+```{=html}
+<div class="classifier-widget">
+<div id="dropZone" class="drop-zone">
+<p class="drop-zone-text">Drag and drop an image here, or</p>
+<input type="file" id="artInput" accept="image/*" class="custom-input"/>
+<label for="artInput" class="btn-custom">Choose File</label>
+</div>
+<img id="imagePreview" class="image-preview" style="display:none;" alt="Uploaded painting preview" />
+<div class="button-row">
+<button id="classifyBtn" class="classify-btn">Identify Image</button>
+<button id="clearBtn" class="clear-btn" style="display:none;">Clear</button>
+</div>
+<div id="result" class="result-panel" style="display:none;">
+<h3 id="predictedClass"></h3>
+<p id="artistBio"></p>
+<details class="confidence-details">
+<summary>Show full confidence breakdown (long)</summary>
+<ul id="confidenceList" class="confidence-list"></ul>
+</details>
+</div>
+<div class="example-row">
+<p class="example-label">Or try an example:</p>
+<div class="example-thumbs">
+<img class="example-thumb" src="/assets/example_images/airplane-test.jpg" alt="Example painting 1" />
+<img class="example-thumb" src="/assets/example_images/car-test.jpg" alt="Example painting 2" />
+<img class="example-thumb" src="/assets/example_images/horse-test.png" alt="Example painting 3" />
+<img class="example-thumb" src="/assets/example_images/deer-test.jpeg" alt="Example painting 4" />
+<img class="example-thumb" src="/assets/example_images/bird-test.jpg" alt="Example painting 4" />
+</div>
+<p class="footer-text">Having issues? <a href="https://huggingface.co/spaces/DorianfirstmetAelinwh4-sEFOREBEEPBE/erilea-models">Try directly on HuggingFace</a>  &nbsp;•&nbsp;  Share this page</p>
+</div>
+</div>
+```
+
 *This project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site's Blog page.*

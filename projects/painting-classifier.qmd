@@ -8,16 +8,8 @@ Try the current revision of the Ashryver Painting Classifier (V1) below. This de
 
 <script src="ashryver-controller.js"></script>
 
-<iframe
-  class="model-embed"
-  src="https://dorianfirstmetaelinwh4-seforebeepbe-erilea-models.hf.space"
-  frameborder="0"
-  width="100%"
-  height="600">
-</iframe>
 
-
-## Alternative Custom UI (in development; may be unstable)
+## Live Classifier
 ```{=html}
 <div class="classifier-widget">
 <div id="dropZone" class="drop-zone">
@@ -33,16 +25,24 @@ Try the current revision of the Ashryver Painting Classifier (V1) below. This de
 <div id="result" class="result-panel" style="display:none;">
 <h3 id="predictedClass"></h3>
 <p id="artistBio"></p>
+<details class="confidence-details">
+<summary>Show full confidence breakdown (long)</summary>
+<ul id="confidenceList" class="confidence-list"></ul>
+</details>
 </div>
 <div class="example-row">
 <p class="example-label">Or try an example:</p>
 <div class="example-thumbs">
 <img class="example-thumb" src="/assets/example_images/painting-test-1.jpg" alt="Example painting 1" />
-<img class="example-thumb" src="/assets/example_images/painting-test-2.png" alt="Example painting 2" />
+<img class="example-thumb" src="/assets/example_images/painting-test-10.jpg" alt="Example painting 2" />
 <img class="example-thumb" src="/assets/example_images/painting-test-8.jpg" alt="Example painting 3" />
 <img class="example-thumb" src="/assets/example_images/painting-test-5.jpg" alt="Example painting 4" />
 <img class="example-thumb" src="/assets/example_images/painting-test-11.jpg" alt="Example painting 4" />
 </div>
+<p class="footer-text">Having issues? <a href="https://huggingface.co/spaces/DorianfirstmetAelinwh4-sEFOREBEEPBE/erilea-models">Try directly on HuggingFace</a>  &nbsp;•&nbsp;  Share this page</p>
 </div>
 </div>
+&nbsp;
+&nbsp;
 ```
+*This project was built with the **fast.ai** library, the resnet50 model, and a hand-collected dataset of painting images. To read more about the project background and take a peek at the code, [read the official summary post](https://pontiacgto2006.github.io/quarto-dl-site/my-blog/posts/painting-classifier-breakdown/).*

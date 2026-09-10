@@ -39,6 +39,7 @@ once the custom JS/CSS is added */
   
   margin: 0 0 0.75rem 0;
   color: #666;
+  font-size: 19px;
 }
 
 .image-preview {
@@ -146,4 +147,62 @@ once the custom JS/CSS is added */
 .example-thumb:hover {
   border-color: #c9a227;
   transform: scale(1.05);
+}
+
+.footer-text {
+  font-size: 15px;
+  padding-top: 15px;
+  padding-bottom: 0px;
+}
+
+.confidence-details {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+.confidence-details summary {
+  cursor: pointer;
+  color: #787880;
+}
+.confidence-details summary:hover {
+  color: #df6a3b;
+}
+.confidence-list {
+  list-style: none;
+  margin: 0.75rem 0 0 0;
+  padding: 0;
+}
+.confidence-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+.confidence-label {
+  flex: 0 0 90px;
+  font-size: 0.85rem;
+  color: #333;
+}
+.confidence-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.confidence-bar-fill {
+  display: block;
+  height: 100%;
+  background: #c9a227;
+}
+.confidence-pct {
+  flex: 0 0 40px;
+  text-align: right;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* Bold the actual chosen category in the prediction list */
+.top-prediction {
+  font-weight: 700;
+  color: #10b981;
 }
