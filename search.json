@@ -11,7 +11,14 @@
     "href": "projects/cifar-classifier.html",
     "title": "CIFAR/Keras Image Classifier",
     "section": "",
-    "text": "Upload an image below to try the CIFAR Image Classification model, built with Tensorflow and Keras and trained on 60,000 images in the CIFAR-10 dataset. Current categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck. If possible, images should be taken of real-life objects (no video game vehicles, for example) and most of the subject should be visible.\n\n\nThis project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site’s Blog page."
+    "text": "Upload an image below to try the CIFAR Image Classification model, built with Tensorflow and Keras and trained on 60,000 images in the CIFAR-10 dataset. Current categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck. If possible, images should be taken of real-life objects (no video game vehicles, for example) and most of the subject should be visible."
+  },
+  {
+    "objectID": "projects/cifar-classifier.html#alternate-custom-ui-in-progress-may-be-unstable",
+    "href": "projects/cifar-classifier.html#alternate-custom-ui-in-progress-may-be-unstable",
+    "title": "CIFAR/Keras Image Classifier",
+    "section": "Alternate Custom UI (in progress, may be unstable)",
+    "text": "Alternate Custom UI (in progress, may be unstable)\n\n\nDrag and drop an image here, or\n\nChoose File\n\n\n\nIdentify Image\nClear\n\n\n\n\n\nShow full confidence breakdown (long)\n\n\n\n\nOr try an example:\n\n\n\n\n\n\n\nHaving issues? Try directly on HuggingFace   •   Share this page\n\n\nThis project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site’s Blog page."
   },
   {
     "objectID": "painting-classifier/painting-classifier-v2.html",
@@ -210,10 +217,10 @@
     "text": "Try the current revision of the Ashryver Painting Classifier (V1) below. This deep learning model is trained to recognize paintings by 20 different Impressionistic, Surrealist, Cubist, and Pop Art artists, and was trained using fast.ai and PyTorch. Work on an improved V2 is currently underway.\nView the corresponding HuggingFace space here."
   },
   {
-    "objectID": "projects/painting-classifier.html#alternative-custom-ui-in-development-may-be-unstable",
-    "href": "projects/painting-classifier.html#alternative-custom-ui-in-development-may-be-unstable",
+    "objectID": "projects/painting-classifier.html#live-classifier",
+    "href": "projects/painting-classifier.html#live-classifier",
     "title": "Ashryver Painting Classifier",
-    "section": "Alternative Custom UI (in development; may be unstable)",
-    "text": "Alternative Custom UI (in development; may be unstable)\n\n\nDrag and drop an image here, or\n\nChoose File\n\n\n\nIdentify Painting\nClear\n\n\n\n\n\n\nOr try an example:"
+    "section": "Live Classifier",
+    "text": "Live Classifier\n\n\nDrag and drop an image here, or\n\nChoose File\n\n\n\nIdentify Painting\nClear\n\n\n\n\n\nShow full confidence breakdown (long)\n\n\n\n\nOr try an example:\n\n\n\n\n\n\n\nHaving issues? Try directly on HuggingFace   •   Share this page\n\n\n \n \nThis project was built with the fast.ai library, the resnet50 model, and a hand-collected dataset of painting images. To read more about the project background and take a peek at the code, read the official summary post."
   }
 ]

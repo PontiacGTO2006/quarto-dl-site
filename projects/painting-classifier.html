@@ -143,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#alternative-custom-ui-in-development-may-be-unstable" id="toc-alternative-custom-ui-in-development-may-be-unstable" class="nav-link active" data-scroll-target="#alternative-custom-ui-in-development-may-be-unstable">Alternative Custom UI (in development; may be unstable)</a></li>
+  <li><a href="#live-classifier" id="toc-live-classifier" class="nav-link active" data-scroll-target="#live-classifier">Live Classifier</a></li>
   </ul>
 </nav>
     </div>
@@ -172,10 +172,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Try the current revision of the Ashryver Painting Classifier (V1) below. This deep learning model is trained to recognize paintings by 20 different Impressionistic, Surrealist, Cubist, and Pop Art artists, and was trained using fast.ai and PyTorch. Work on an improved V2 is currently underway.</p>
 <p><em>View the corresponding HuggingFace space <a href="https://huggingface.co/spaces/DorianfirstmetAelinwh4-sEFOREBEEPBE/erilea-models">here</a></em>.</p>
 <script src="ashryver-controller.js"></script>
-<iframe class="model-embed" src="https://dorianfirstmetaelinwh4-seforebeepbe-erilea-models.hf.space" frameborder="0" width="100%" height="600">
-</iframe>
-<section id="alternative-custom-ui-in-development-may-be-unstable" class="level2">
-<h2 class="anchored" data-anchor-id="alternative-custom-ui-in-development-may-be-unstable">Alternative Custom UI (in development; may be unstable)</h2>
+<section id="live-classifier" class="level2">
+<h2 class="anchored" data-anchor-id="live-classifier">Live Classifier</h2>
 <div class="classifier-widget">
 <div id="dropZone" class="drop-zone">
 <p class="drop-zone-text">Drag and drop an image here, or</p>
@@ -190,18 +188,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="result" class="result-panel" style="display:none;">
 <h3 id="predictedClass" class="anchored"></h3>
 <p id="artistBio"></p>
+<details class="confidence-details">
+<summary>Show full confidence breakdown (long)</summary>
+<ul id="confidenceList" class="confidence-list"></ul>
+</details>
 </div>
 <div class="example-row">
 <p class="example-label">Or try an example:</p>
 <div class="example-thumbs">
 <img class="example-thumb" src="../assets/example_images/painting-test-1.jpg" alt="Example painting 1">
-<img class="example-thumb" src="../assets/example_images/painting-test-2.png" alt="Example painting 2">
+<img class="example-thumb" src="../assets/example_images/painting-test-10.jpg" alt="Example painting 2">
 <img class="example-thumb" src="../assets/example_images/painting-test-8.jpg" alt="Example painting 3">
 <img class="example-thumb" src="../assets/example_images/painting-test-5.jpg" alt="Example painting 4">
 <img class="example-thumb" src="../assets/example_images/painting-test-11.jpg" alt="Example painting 4">
 </div>
+<p class="footer-text">Having issues? <a href="https://huggingface.co/spaces/DorianfirstmetAelinwh4-sEFOREBEEPBE/erilea-models">Try directly on HuggingFace</a>  &nbsp;•&nbsp;  Share this page</p>
 </div>
 </div>
+&nbsp;
+&nbsp;
+<p><em>This project was built with the <strong>fast.ai</strong> library, the resnet50 model, and a hand-collected dataset of painting images. To read more about the project background and take a peek at the code, <a href="https://pontiacgto2006.github.io/quarto-dl-site/my-blog/posts/painting-classifier-breakdown/">read the official summary post</a>.</em></p>
 
 
 </section>
