@@ -143,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#alternate-custom-ui-in-progress-may-be-unstable" id="toc-alternate-custom-ui-in-progress-may-be-unstable" class="nav-link active" data-scroll-target="#alternate-custom-ui-in-progress-may-be-unstable">Alternate Custom UI (in progress, may be unstable)</a></li>
+  <li><a href="#alternate-custom-ui-may-be-unstable" id="toc-alternate-custom-ui-may-be-unstable" class="nav-link active" data-scroll-target="#alternate-custom-ui-may-be-unstable">Alternate Custom UI (may be unstable)</a></li>
   </ul>
 </nav>
     </div>
@@ -172,13 +172,14 @@ ul.task-list li input[type="checkbox"] {
 <p>Upload an image below to try the CIFAR Image Classification model, built with Tensorflow and Keras and trained on 60,000 images in the CIFAR-10 dataset. <strong>Current categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck</strong>. If possible, images should be taken of real-life objects (no video game vehicles, for example) and most of the subject should be visible.</p>
 <iframe class="model-embed" src="https://dorianfirstmetaelinwh4-seforebeepbe-cifar-classifier.hf.space" frameborder="0" width="100%" height="600">
 </iframe>
-<section id="alternate-custom-ui-in-progress-may-be-unstable" class="level2">
-<h2 class="anchored" data-anchor-id="alternate-custom-ui-in-progress-may-be-unstable">Alternate Custom UI (in progress, may be unstable)</h2>
+<script src="cifar-controller.js"></script>
+<section id="alternate-custom-ui-may-be-unstable" class="level2">
+<h2 class="anchored" data-anchor-id="alternate-custom-ui-may-be-unstable">Alternate Custom UI (may be unstable)</h2>
 <div class="classifier-widget">
 <div id="dropZone" class="drop-zone">
 <p class="drop-zone-text">Drag and drop an image here, or</p>
-<input type="file" id="artInput" accept="image/*" class="custom-input">
-<label for="artInput" class="btn-custom">Choose File</label>
+<input type="file" id="imageInput" accept="image/*" class="custom-input">
+<label for="imageInput" class="btn-custom">Choose File</label>
 </div>
 <img id="imagePreview" class="image-preview" style="display:none;" alt="Uploaded painting preview">
 <div class="button-row">
@@ -186,10 +187,10 @@ ul.task-list li input[type="checkbox"] {
 <button id="clearBtn" class="clear-btn" style="display:none;">Clear</button>
 </div>
 <div id="result" class="result-panel" style="display:none;">
-<h3 id="predictedClass" class="anchored"></h3>
-<p id="artistBio"></p>
+<h3 id="predictedClass" class="predicted-class anchored"></h3>
+<p id="additionalInfo"></p>
 <details class="confidence-details">
-<summary>Show full confidence breakdown (long)</summary>
+<summary>Show confidence breakdown</summary>
 <ul id="confidenceList" class="confidence-list"></ul>
 </details>
 </div>
@@ -202,9 +203,11 @@ ul.task-list li input[type="checkbox"] {
 <img class="example-thumb" src="../assets/example_images/deer-test.jpeg" alt="Example painting 4">
 <img class="example-thumb" src="../assets/example_images/bird-test.jpg" alt="Example painting 4">
 </div>
-<p class="footer-text">Having issues? <a href="https://huggingface.co/spaces/DorianfirstmetAelinwh4-sEFOREBEEPBE/erilea-models">Try directly on HuggingFace</a>  &nbsp;•&nbsp;  Share this page</p>
+<p class="footer-text">Having issues? <a href="https://huggingface.co/spaces/DorianfirstmetAelinwh4-sEFOREBEEPBE/cifar-classifier">Try directly on HuggingFace</a>  &nbsp;•&nbsp;  Share this page</p>
 </div>
 </div>
+&nbsp;
+&nbsp;
 <p><em>This project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site’s Blog page.</em></p>
 
 

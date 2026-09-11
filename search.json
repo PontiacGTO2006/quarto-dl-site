@@ -14,11 +14,11 @@
     "text": "Upload an image below to try the CIFAR Image Classification model, built with Tensorflow and Keras and trained on 60,000 images in the CIFAR-10 dataset. Current categories: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck. If possible, images should be taken of real-life objects (no video game vehicles, for example) and most of the subject should be visible."
   },
   {
-    "objectID": "projects/cifar-classifier.html#alternate-custom-ui-in-progress-may-be-unstable",
-    "href": "projects/cifar-classifier.html#alternate-custom-ui-in-progress-may-be-unstable",
+    "objectID": "projects/cifar-classifier.html#alternate-custom-ui-may-be-unstable",
+    "href": "projects/cifar-classifier.html#alternate-custom-ui-may-be-unstable",
     "title": "CIFAR/Keras Image Classifier",
-    "section": "Alternate Custom UI (in progress, may be unstable)",
-    "text": "Alternate Custom UI (in progress, may be unstable)\n\n\nDrag and drop an image here, or\n\nChoose File\n\n\n\nIdentify Image\nClear\n\n\n\n\n\nShow full confidence breakdown (long)\n\n\n\n\nOr try an example:\n\n\n\n\n\n\n\nHaving issues? Try directly on HuggingFace   •   Share this page\n\n\nThis project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site’s Blog page."
+    "section": "Alternate Custom UI (may be unstable)",
+    "text": "Alternate Custom UI (may be unstable)\n\n\nDrag and drop an image here, or\n\nChoose File\n\n\n\nIdentify Image\nClear\n\n\n\n\n\nShow confidence breakdown\n\n\n\n\nOr try an example:\n\n\n\n\n\n\n\nHaving issues? Try directly on HuggingFace   •   Share this page\n\n\n \n \nThis project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site’s Blog page."
   },
   {
     "objectID": "painting-classifier/painting-classifier-v2.html",

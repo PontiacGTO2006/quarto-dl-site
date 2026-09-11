@@ -36,7 +36,6 @@ once the custom JS/CSS is added */
 }
 
 .drop-zone-text {
-  
   margin: 0 0 0.75rem 0;
   color: #666;
   font-size: 19px;
@@ -52,9 +51,10 @@ once the custom JS/CSS is added */
 .result-panel {
   margin-top: 1rem;
   padding: 1rem;
-  border-left: 4px solid #c9a227;
+  border-left: 3px solid #c9a227; 
   background: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
+  width: 55%;
 }
 
 .classify-btn {
@@ -69,6 +69,10 @@ once the custom JS/CSS is added */
 .classify-btn:hover {
   background-color: #b9550e;
   transition: 0.3s ease-in-out;
+}
+
+.predicted-class {
+  font-size: 26px;
 }
 
 .custom-input {
