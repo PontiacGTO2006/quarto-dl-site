@@ -22,11 +22,9 @@ const artistInfo = {
   "turner": "(1775-1851) - a pioneering English Romantic painter, printmaker, and watercolorist renowned for his expressive treatment of light and atmospheric weather.",
   "braque": "(1882-1963) - a foundational 20th-century French painter and sculptor known for meditative still lifes and textured tactile surfaces.",
   "mondrian": "(1872-1944) - a famous Dutch painter who helped invent 20th-century abstract art, best known for his simple geometric paintings.",
-  "seurat": "A pioneering French painter (1859-1891) who founded the Neo-Impressionism movement, and the invetor of Pointillism and Divionism.",
+  "seurat": "A pioneering French painter (1859-1891) who founded the Neo-Impressionism movement, and the inventor of Pointillism and Divionism.",
   "rivera": "A world-famous Mexican muralist and painter (1886-1957) who defined Mexican modern art through bold, monumental wall frescoes.",
-  "whistler": "An American-born painter (1834-1903), printmaker, and theorist active mainly in London and Paris. Champion of the 'art for art's sake' Aesthetic movement.",
-
-  // other classes for each artist to be filled (10 to go)
+  "whistler": "An American-born painter (1834-1903), printmaker, and theorist active mainly in London and Paris. Champion of the 'art for art's sake' aesthetic movement.",
 };
 
 document.addEventListener("DOMContentLoaded", () => {
