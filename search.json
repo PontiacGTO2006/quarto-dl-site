@@ -18,7 +18,7 @@
     "href": "projects/cifar-classifier.html#alternate-custom-ui-may-be-unstable",
     "title": "CIFAR/Keras Image Classifier",
     "section": "Alternate Custom UI (may be unstable)",
-    "text": "Alternate Custom UI (may be unstable)\n\n\nDrag and drop an image here, or\n\nChoose File\n\n\n\nIdentify Image\nClear\n\n\n\n\n\nShow confidence breakdown\n\n\n\n\nOr try an example:\n\n\n\n\n\n\n\nHaving issues? Try directly on HuggingFace   •   Share this page\n\n\n \n \nThis project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site’s Blog page."
+    "text": "Alternate Custom UI (may be unstable)\n\n\nDrag and drop an image here, or\n\nChoose File\n\n\n\nIdentify Image\nClear\n\n\n\n\nConfidence breakdown:\n\n\n\nOr try an example:\n\n\n\n\n\n\n\nHaving issues? Try directly on HuggingFace   •   Share this page\n\n\n \n \nThis project was built with Python 3.12, Tensorflow 2.20, Keras, and the CIFAR-10 dataset. It achieved 0.79 training accuracy and performs pretty well on most images you feed into it. Project commentary and applicable notebooks are coming soon on the site’s Blog page."
   },
   {
     "objectID": "painting-classifier/painting-classifier-v2.html",
