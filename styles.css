@@ -71,6 +71,12 @@ once the custom JS/CSS is added */
   transition: 0.3s ease-in-out;
 }
 
+.confidence-breakdown {
+  color: gray;
+  font-weight: 800;
+  font-size: 16px;
+}
+
 .predicted-class {
   font-size: 26px;
 }
